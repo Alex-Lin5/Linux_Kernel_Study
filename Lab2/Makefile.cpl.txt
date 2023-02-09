@@ -1,0 +1,13 @@
+CC=gcc
+CFLAGS=-I
+DEPS=func.h
+OBJ=test1.o test2.o main.o
+%.o: %.c	
+	$(CC) -c $<
+tk1make: $(OBJ)
+	$(CC) -o tk1 $(OBJ)
+
+.PHONY: clean
+
+clean:
+	rm -f *.o *~ core *~
