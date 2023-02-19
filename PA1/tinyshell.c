@@ -204,14 +204,38 @@ unsigned char process_builtin_commands(cmd_string *C)
   {
     /* << YOUR CODE GOES HERE >> */
     // YCGH: Write code for processing the command
-
+    // if(!C->args){
+    if(C->arg_count==1){
+        char* res = getenv("HOME");
+	if(res==NULL){
+	    printf("No match in env $Home");
+	} else{
+	    printf("%s\n", res);
+	    chdir(res);
+	}
+    } else {
+    	char* dir = C->args[1];
+	int res = chdir(dir);
+	// printf("CD: %s\n", dir);
+	if(res == -1){
+	    PRINT_ERROR_SYSCALL("chdir");
+	}
+    }
     return (unsigned char)1;
   }
   else if (strcmp(C->cmd, "pwd") == 0)
   {
     /* << YOUR CODE GOES HERE >> */
     // YCGH: Write code for processing the command
-  
+    char cwd[256];
+   if(getcwd(cwd, sizeof(cwd)) == NULL){
+	  PRINT_ERROR_SYSCALL("getcwd");
+	  PRINT_ERROR; 
+	}
+   else{
+	// printf("CWD: %s\n", cwd);
+	printf("%s\n", cwd);
+   }	   
     return (unsigned char)1;
   }
   else
@@ -308,7 +332,13 @@ int main(int argc, char *argv[])
          *
          * Also handle error using PRINT_ERROR_SYSCALL().
          */
-
+	char* fl = C.ofile;
+	// printf("Redirect to file: %s\n", fl);
+	close(STDOUT_FILENO);
+	int ret = open(fl, O_CREAT|O_WRONLY|O_TRUNC, S_IRWXU);
+	if(ret==-1){
+	    PRINT_ERROR_SYSCALL("open");
+	}
       }
 
 
@@ -317,9 +347,9 @@ int main(int argc, char *argv[])
        * Also handle errors using PRINT_ERROR_SYSCALL("execvp"),
        * if execvp() fails
        */
-
       
-
+	execvp(C.cmd, C.args);
+	PRINT_ERROR_SYSCALL("execvp");
       // if execvp() succeeds, child never executes the following
       FREE_ALLOCATED_MEMORY(C);
       return 1; 
@@ -335,7 +365,10 @@ int main(int argc, char *argv[])
       if (C.detach == 0)
       {
         // <<YOUR CODE GOES HERE>>
-        
+        int cs = waitpid(fc, NULL, 0);
+	if(cs == -1){
+		PRINT_ERROR_SYSCALL("waitpid"); 
+	}
         // YCGH: Make the parent wait using waitpid().
         // Don't forget to check error for `waitpid()` syscall
         // using PRINT_ERROR_SYSCALL("waitpid");
