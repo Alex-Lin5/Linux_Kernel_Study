@@ -15,11 +15,19 @@ Copyright (C) 2019 Free Software Foundation, Inc.
 ### SFTP for file transfer
 - `sftp username@servername`
 - Find current working directory locally and remotely, `lpwd` vs `pwd`
+- Change current working directory locally and remotely, `lcd` vs `cd`
 - Download from remote machine, `get <FileName>`
 - Upload local file, `put <FileName>`
 ## Tools
-`grep -R <String> <path>`, to find all avaible text matches <String> within <path>
-`find -name <fileName>`, find the path of <fileName> from the current working directory recursively
+- `grep -R <String> <path>`, to find all avaible text matches <String> within <path>
+- `find -name <fileName>`, find the path of <fileName> from the current working directory recursively
+- file content comparison
+  - In Linux, `diff file1 file2`
+  - In Windows, `diff (get-content file1) (get-content file2)`
+- file compress and depress
+  - `tar czf zippedFile.tar.gz folder/` to compress into zipped file
+  - `tar tvzf zippedFile.tar.gz` to preview the content in compressed zipped file
+  - `tar xzf zippedFile.tar.gz` to depress the zipped file
 
 ## Acknowledge
 - Labs and programing assignments published in this repository is built on scripts primarily written in C language and provided by Professor Hoque. \
