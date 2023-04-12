@@ -28,6 +28,16 @@ Copyright (C) 2019 Free Software Foundation, Inc.
   - `tar czf zippedFile.tar.gz folder/` to compress into zipped file
   - `tar tvzf zippedFile.tar.gz` to preview the content in compressed zipped file
   - `tar xzf zippedFile.tar.gz` to depress the zipped file
+- GDB debugging program, `gdb ./program`
+  - `run arg1 arg2` or `r`, run program with optional arguements
+  - `continue` or `c`, continue running program until next break point or error
+  - `break func()` or `b f()`, to put a break point on the begining of function
+  - `break` or `b`, put a break point at current line
+  - `info break`, list breakpoints
+  - `backtrace` or `bt`, prints current stack trace
+  - `delete N` or `d N`, delete breakpoint numbered N
+  - `print var` or `p var`, get variable var value in current stack
+  - `quit` or `q`, quits gdb
 
 ## Acknowledge
 - Labs and programing assignments published in this repository is built on scripts primarily written in C language and provided by Professor Hoque. \
