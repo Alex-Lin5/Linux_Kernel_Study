@@ -28,17 +28,39 @@ Copyright (C) 2019 Free Software Foundation, Inc.
   - `tar czf zippedFile.tar.gz folder/` to compress into zipped file
   - `tar tvzf zippedFile.tar.gz` to preview the content in compressed zipped file
   - `tar xzf zippedFile.tar.gz` to depress the zipped file
-- GDB debugging program, `gdb ./program`
-  - `run arg1 arg2` or `r`, run program with optional arguements
-  - `continue` or `c`, continue running program until next break point or error
-  - `break func()` or `b f()`, to put a break point on the begining of function
-  - `break` or `b`, put a break point at current line
-  - `info break`, list breakpoints
-  - `backtrace` or `bt`, prints current stack trace
-  - `delete N` or `d N`, delete breakpoint numbered N
-  - `print var` or `p var`, get variable var value in current stack
-  - `quit` or `q`, quits gdb
+## GDB debugging
+debugging program, `gdb ./program`
+- `run arg1 arg2` or `r`, run program with optional arguements
+- `continue` or `c`, continue running program until next break point or error
+- `next` or `n`, go to next line but not step into functions
+- `step` or `s`, run next line and step into functions if necessary
+- `break func()` or `b f()`, to put a break point on the begining of function
+- `break` or `b`, put a break point at current line
+- `info break`, list breakpoints
+- `backtrace` or `bt`, prints current stack trace
+- `delete N` or `d N`, delete breakpoint numbered N
+- `print var` or `p var`, get variable var value in current stack
+- `quit` or `q`, quits gdb
 
+## Nachos
+
+|    System     |Ubuntu 20.04||||||||
+|:-----------:|:----------------:|:-----:|:---:|:---:|:---:|:---:|:---:|:---:|
+|   &#8595;   |||||||
+| Program |    Nachos     ||
+|Arguments| -x ./prog3|-x ./prog2|||||||
+|   &#8595;   |&#8594;||||||
+|   Main(argc, argv)   |int argc|char **argv|||||
+|  List<char*> userProgNames   |Append(argv[i + 1])|for (i = 1; i < argc; i++)|||||
+|         char *progName = |userProgNames.RemoveFront()|
+|   &#8595;   |||||||
+|   Thread *t =   |new Thread(progName)||||||
+|    t->Fork(RunUserProg, progName)  |(VoidFunctionPtr) RunUserProg|(void *)progName|||||
+|   &#8595;   |||||||
+| void RunUserProg(filename)    |void *filename||||||
+   |||||||
+|      |||||||
+|      |||||||
 ## Acknowledge
 - Labs and programing assignments published in this repository is built on scripts primarily written in C language and provided by Professor Hoque. \
 https://ecs.syracuse.edu/faculty-staff/endadul-hoque
