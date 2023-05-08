@@ -42,25 +42,6 @@ debugging program, `gdb ./program`
 - `print var` or `p var`, get variable var value in current stack
 - `quit` or `q`, quits gdb
 
-## Nachos
-
-|    System     |Ubuntu 20.04||||||||
-|:-----------:|:----------------:|:-----:|:---:|:---:|:---:|:---:|:---:|:---:|
-|   &#8595;   |||||||
-| Program |    Nachos     ||
-|Arguments| -x ./prog3|-x ./prog2|||||||
-|   &#8595;   |&#8594;||||||
-|   Main(argc, argv)   |int argc|char **argv|||||
-|  List<char*> userProgNames   |Append(argv[i + 1])|for (i = 1; i < argc; i++)|||||
-|         char *progName = |userProgNames.RemoveFront()|
-|   &#8595;   |||||||
-|   Thread *t =   |new Thread(progName)||||||
-|    t->Fork(RunUserProg, progName)  |(VoidFunctionPtr) RunUserProg|(void *)progName|||||
-|   &#8595;   |||||||
-| void RunUserProg(filename)    |void *filename||||||
-   |||||||
-|      |||||||
-|      |||||||
 ## Acknowledge
 - Labs and programing assignments published in this repository is built on scripts primarily written in C language and provided by Professor Hoque. \
 https://ecs.syracuse.edu/faculty-staff/endadul-hoque
